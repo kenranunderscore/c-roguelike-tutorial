@@ -4,27 +4,14 @@ Entity *player;
 
 int main(void)
 {
-    int ch;
+    curses_setup();
+
     Position start_pos = { 10, 20 };
-
-    initscr();
-    noecho();
-    curs_set(0);
-
     player = create_player(start_pos);
-    mvaddch(player->pos.y, player->pos.x, player->ch);
 
-    while (ch = getch())
-    {
-        if (ch == 'q')
-            break;
+    game_loop();
 
-        handle_input(ch);
-        clear();
-        mvaddch(player->pos.y, player->pos.x, player->ch);
-    }
-
-    endwin();
+    quit();
 
     return 0;
 }
