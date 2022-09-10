@@ -1,14 +1,27 @@
-#include <ncurses.h>
+#include <rogue.h>
+
+Entity *player;
 
 int main(void)
 {
+    int ch;
+    Position start_pos = { 10, 20 };
+
     initscr();
     noecho();
     curs_set(0);
 
-    while (getch() != 'q')
+    player = create_player(start_pos);
+    mvaddch(player->pos.y, player->pos.x, player->ch);
+
+    while (ch = getch())
     {
-        mvaddch(10, 20, '@');
+        if (ch == 'q')
+            break;
+
+        handle_input(ch);
+        clear();
+        mvaddch(player->pos.y, player->pos.x, player->ch);
     }
 
     endwin();
