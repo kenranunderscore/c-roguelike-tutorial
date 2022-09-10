@@ -13,20 +13,33 @@ Entity *create_player(Position start_pos)
 
 void handle_input(int input)
 {
+    Position new_pos = { player->pos.y, player->pos.x };
+
     switch (input) {
     case 'k':
-        player->pos.y--;
+        new_pos.y--;
         break;
     case 'j':
-        player->pos.y++;
+        new_pos.y++;
         break;
     case 'h':
-        player->pos.x--;
+        new_pos.x--;
         break;
     case 'l':
-        player->pos.x++;
+        new_pos.x++;
         break;
     default:
         break;
+    }
+
+    move_player(new_pos);
+}
+
+void move_player(Position new_pos)
+{
+    if (map[new_pos.y][new_pos.x].walkable)
+    {
+        player->pos.y = new_pos.y;
+        player->pos.x = new_pos.x;
     }
 }

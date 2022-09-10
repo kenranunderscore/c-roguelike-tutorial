@@ -1,10 +1,11 @@
 CC = gcc
-CFLAGS = -lncurses -I./src/
+INCLUDE = ./src
+CFLAGS = -lncurses -I$(INCLUDE)
 SRC = ./src/*.c
 
 all: rogue run
 
-rogue: $(SRC)
+rogue: $(SRC) $(INCLUDE)/*.h
 	$(CC) $(SRC) $(CFLAGS) -o rogue
 
 run: rogue

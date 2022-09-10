@@ -11,7 +11,7 @@ void game_loop(void)
 {
     int ch;
 
-    mvaddch(player->pos.y, player->pos.x, player->ch);
+    draw_everything();
 
     while (ch = getch())
     {
@@ -19,8 +19,7 @@ void game_loop(void)
             break;
 
         handle_input(ch);
-        clear();
-        mvaddch(player->pos.y, player->pos.x, player->ch);
+        draw_everything();
     }
 }
 
@@ -28,4 +27,5 @@ void quit(void)
 {
     endwin();
     free(player);
+    free_map();
 }
