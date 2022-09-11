@@ -9,6 +9,7 @@ Tile **map;
 int main(void)
 {
     curses_setup();
+    srand(time(NULL));
 
     map = create_map_tiles();
     Position start_pos = setup_map();

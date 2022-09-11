@@ -3,6 +3,7 @@
 
 #include <ncurses.h>
 #include <stdlib.h>
+#include <time.h>
 
 typedef struct
 {
@@ -16,6 +17,14 @@ typedef struct
     char ch;
     bool walkable;
 } Tile;
+
+typedef struct
+{
+    int height;
+    int width;
+    Position pos;
+    Position center;
+} Room;
 
 typedef struct
 {
@@ -47,6 +56,12 @@ void quit(void);
 Entity *create_player(Position start_pos);
 void handle_input(int input);
 void move_player(Position new_pos);
+
+// room.c
+
+Room create_room(int y, int x, int height, int width);
+void add_room_to_map(Room room);
+void connect_room_centers(Position center_one, Position center_two);
 
 // map.c
 
